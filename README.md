@@ -8,13 +8,11 @@ Proje, çalışanların çalışma koşulları, iç iletişim, yönetim kalitesi
 
 ✨ Temel Yetenekler ve Analitik Güç
 
-Kategori	Özellik	Açıklama
-Demografik Kırılım	Statü ve Departman Analizi	Cevaplar; Mavi Yaka/Beyaz Yaka, Cinsiyet ve Üretim/Lojistik gibi departmanlar arasında kolayca filtrelenebilir.
-Katılım İzleme	Anket Logları (AnketLog)	Gerçek zamanlı olarak katılım oranlarını, giriş/tamamlama başarılarını Sicil No bazında takip etme imkanı.
-Performans	SQL Server Altyapısı	Veri bütünlüğünü (FK) ve yüksek performanslı sorgulamayı destekleyen Microsoft SQL Server yapısı.
-Karar Desteği	Karşılaştırmalı Skorlar	Departmanlar arası memnuniyet farklarını ve zaman içindeki eğilimleri hızla tespit etme yeteneği.
-🇹🇷 Veritabanı Şeması (DDL)
-Şema, Personel Takibi, Soru Yönetimi ve Detaylı Cevap Analizi olmak üzere 5 tablo ile veri akışını yönetir.
+Kategori,Özellik,Açıklama
+Demografik Kırılım,Statü ve Departman Analizi,"Cevaplar; Mavi Yaka/Beyaz Yaka, Cinsiyet ve Üretim/Lojistik gibi departmanlar arasında kolayca filtrelenebilir."
+Katılım İzleme,Anket Logları (AnketLog),"Gerçek zamanlı olarak katılım oranlarını, giriş/tamamlama başarılarını Sicil No bazında takip etme imkanı."
+Performans,SQL Server Altyapısı,Veri bütünlüğünü (FK) ve yüksek performanslı sorgulamayı destekleyen Microsoft SQL Server yapısı.
+Karar Desteği,Karşılaştırmalı Skorlar,Departmanlar arası memnuniyet farklarını ve zaman içindeki eğilimleri hızla tespit etme yeteneği.
 
 📊 Tablo Yapısı ve Fonksiyonları
 
