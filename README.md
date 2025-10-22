@@ -1,49 +1,68 @@
-# Fabrika-Isci-Anket
+# 🏭 Fabrika Çalışan Memnuniyeti Anket Sistemi
 
-🏭 Fabrika Çalışan Memnuniyeti Anket Sistemi (Fabrika-Isci-Anket)
-Bu depo, imalat ve üretim sektörlerine özel olarak tasarlanmış, çalışan memnuniyeti süreçlerini dijitalleştiren ve analiz eden bir veritabanı yönetim sisteminin (DBMS) çekirdek şemasını (DDL) sunmaktadır. Proje, fabrika personelinin (mavi yaka, beyaz yaka) objektif ve ayrıştırılmış verilerle izlenmesini sağlar.
+Bu depo, **imalat ve üretim sektörlerindeki** çalışan memnuniyeti süreçlerini dijitalleştirmek, izlemek ve derinlemesine analiz etmek amacıyla tasarlanmış bir veritabanı yönetim sisteminin (DBMS) çekirdek şemasını (DDL) içermektedir.
 
-🎯 Projenin Amacı ve Odak Noktası
-Proje, çalışanların çalışma koşulları, iç iletişim, yönetim kalitesi ve katılım düzeyleri hakkındaki görüşlerini toplayarak; yönetim kararlarına ışık tutacak, departman ve demografik bazlı analitik çıktıları sağlamayı hedefler.
+Proje, fabrika personelinin (mavi yaka, beyaz yaka) çalışma koşulları, yönetimle iletişim ve katılım düzeylerine dair objektif veriler toplamayı ve bu verileri departman ve demografik gruplar bazında karşılaştırmalı olarak raporlamayı hedefler.
 
-✨ Temel Yetenekler ve Analitik Güç
+## ✨ Temel Özellikler
 
-Kategori,Özellik,Açıklama
-Demografik Kırılım,Statü ve Departman Analizi,"Cevaplar; Mavi Yaka/Beyaz Yaka, Cinsiyet ve Üretim/Lojistik gibi departmanlar arasında kolayca filtrelenebilir."
-Katılım İzleme,Anket Logları (AnketLog),"Gerçek zamanlı olarak katılım oranlarını, giriş/tamamlama başarılarını Sicil No bazında takip etme imkanı."
-Performans,SQL Server Altyapısı,Veri bütünlüğünü (FK) ve yüksek performanslı sorgulamayı destekleyen Microsoft SQL Server yapısı.
-Karar Desteği,Karşılaştırmalı Skorlar,Departmanlar arası memnuniyet farklarını ve zaman içindeki eğilimleri hızla tespit etme yeteneği.
+* **Demografik Kırılım:** Cevapların Statü (Mavi/Beyaz Yaka), Cinsiyet ve Departman bazında filtrelenmesi.
+* **Katılım Takibi:** Anket giriş ve tamamlama kayıtları sayesinde gerçek zamanlı katılım oranları hesaplama.
+* **Gelişmiş Analiz Altyapısı:** SQL sorguları ile departmanlar arası memnuniyet farklarını ve zaman içindeki eğilimleri kolayca belirleme.
+* **SQL Server Odaklı Yapı:** Microsoft SQL Server'ın performans ve güvenlik özelliklerinden yararlanacak şekilde optimize edilmiştir.
 
-📊 Tablo Yapısı ve Fonksiyonları
+---
 
-Tablo Adı	Fonksiyonel Açıklama	Anahtar Bilgi	Kritik Bağlantılar (FK)
-Soru	Anketin içeriğini (Sorular ve Kategorileri) barındırır.	Id (PK)	-
-Personel	Fabrika çalışanlarının temel kimlik (Sicil) ve iletişim bilgileri.	SicilNo (PK)	-
-Kisi	Personelin anket anındaki demografik (Yaş, Cinsiyet) ve organizasyonel (Statü, DepartmanAdi) bilgileri.	SicilId (PK, FK: Personel)	1-1 ilişki (Personel ile)
-Secim	Memnuniyet Skorlarının Temeli. Personelin verdiği tüm cevapları (Cevap, CevapTarihi) kaydeder.	Id (PK)	Kisi.SicilId, Soru.Id
-AnketLog	Anket katılım geçmişi ve durumu (Giriş Başarılı, Tamamlandı) takibi.	Id (PK)	Personel.SicilNo
-🇬🇧 English Description: Database Schema
-This core schema (DDL) is built for Microsoft SQL Server, focusing on robust data management for analyzing factory employee satisfaction.
+## 🇹🇷 Veritabanı Şeması (DDL)
 
-⚙️ Database Structure and Functions
+Veritabanı yapısı, **Personel Takibi**, **Soru Yönetimi** ve **Detaylı Cevap Analizi** olmak üzere üç ana fonksiyonu destekleyen 5 tablodan oluşmaktadır.
 
-Table Name	Functional Description	Key Information	Critical Relations (FK)
-Soru (Question)	Stores the survey questions and their categories.	Id (PK)	-
-Personel (Personnel)	Contains basic personnel ID (SicilNo) and identity details.	SicilNo (PK)	-
-Kisi (Person)	Stores personnel demographics (Age, Gender) and status (Statü, DepartmanAdi) at the time of the survey.	SicilId (PK, FK: Personnel)	1-1 relation (with Personnel)
-Secim (Selection)	The core of satisfaction scores. Records all individual responses (Cevap, CevapTarihi).	Id (PK)	Kisi.SicilId, Soru.Id
-AnketLog (SurveyLog)	Tracks survey participation history and status (Entry Success, Completed).	Id (PK)	Personnel.SicilNo
-💻 Teknolojiler / Technologies
+### 💾 Tablo Yapıları
 
-Kategori	Teknoloji	Not / Comment
-Veritabanı Motoru	Microsoft SQL Server (T-SQL)	Enterprise-grade performance.
-Dil	DDL (Data Definition Language)	Schema creation and constraints.
-✉️ İletişim / Contact
+| Tablo Adı | Amaç | Anahtar İlişki | Kritik Sütunlar |
+| :--- | :--- | :--- | :--- |
+| **Soru** | Anketin temel sorularını (İş Güvenliği, Yönetim vb.) yönetir. | `Id` (PK) | `SoruMetni`, `Kategori` |
+| **Personel** | Çalışanların temel sicil ve kimlik bilgileri. | `SicilNo` (PK) | `AdSoyad` |
+| **Kisi** | Anket anındaki demografik (yaş, cinsiyet) ve statü bilgileri. | `SicilId` (FK: Personel) | `Statü`, `DepartmanAdi` |
+| **Secim** | Personelin sorulara verdiği detaylı cevapların depolandığı temel tablo. | `SicilId` (FK: Kisi), `SoruId` (FK: Soru) | `Cevap`, `CevapTarihi` |
+| **AnketLog** | Anket süreçlerine (Giriş/Tamamlama) dair log kayıtları. | `SicilId` (FK: Personel) | `GirisTarihi`, `Durum` |
 
-Geliştirici / Developer: [Adınız Soyadınız]
+### 🔗 Örnek Analiz Senaryoları
 
-GitHub Profil: [GitHub Profil Linkiniz]
+* **Departman Memnuniyet Karşılaştırması:** `Secim` ve `Kisi` tabloları birleştirilerek, örneğin "Üretim Departmanının Ortalama Memnuniyet Skoru" ile "Lojistik Departmanının" skoru arasındaki fark kolayca hesaplanabilir.
+* **Mavi Yaka vs. Beyaz Yaka Analizi:** `Kisi.Statü` sütunu üzerinden yapılan gruplama ile iki ana personel grubu arasındaki memnuniyet uçurumları tespit edilebilir.
 
-Proje Adı: Fabrika-Isci-Anket
+---
 
-Bu veritabanı mimarisi, fabrika ortamındaki memnuniyet süreçlerini bilimsel ve analitik bir yaklaşımla yönetmek üzere tasarlanmıştır.
+## 🇬🇧 English Description: Factory Employee Satisfaction Survey System
+
+This repository contains the core database schema (DDL) for a system designed to digitize, monitor, and conduct in-depth analysis of employee satisfaction processes within the **manufacturing and production sectors**.
+
+### ⚙️ Database Structure
+
+| Table Name | Purpose | Key Relations | Critical Columns |
+| :--- | :--- | :--- | :--- |
+| **Soru** (`Question`) | Manages core survey questions (Safety, Management, etc.). | `Id` (PK) | `SoruMetni`, `Kategori` |
+| **Personel** (`Personnel`) | Basic employee registration and identity details. | `SicilNo` (PK) | `AdSoyad` |
+| **Kisi** (`Person`) | Demographic (age, gender) and status information at the time of the survey. | `SicilId` (FK: Personnel) | `Statü`, `DepartmanAdi` |
+| **Secim** (`Selection`) | The core table storing detailed answers given to questions. | `SicilId` (FK: Person), `SoruId` (FK: Question) | `Cevap`, `CevapTarihi` |
+| **AnketLog** (`SurveyLog`) | Log records for survey processes (Entry/Completion). | `SicilId` (FK: Personnel) | `GirisTarihi`, `Durum` |
+
+---
+
+## 💻 Kullanılan Teknoloji / Technology Used
+
+| Category | Technology | Description |
+| :--- | :--- | :--- |
+| **Database Engine** | Microsoft SQL Server (T-SQL) | Chosen for enterprise-level performance and robust integration. |
+| **Schema Type** | DDL (Data Definition Language) | Definitions of tables, indexes, and constraints. |
+
+---
+
+## 📞 İletişim / Contact
+
+* **Geliştirici / Developer:** [Adınız Soyadınız]
+* **GitHub:** [GitHub Profil Linkiniz]
+* **Proje Adı / Project Name:** Fabrika-Isci-Anket (Factory Employee Survey)
+
+*Bu tasarım, fabrika ortamındaki memnuniyet ölçüm ihtiyaçlarına özgü olarak hazırlanmıştır.*
