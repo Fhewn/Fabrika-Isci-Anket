@@ -61,8 +61,8 @@ This repository contains the core database schema (DDL) for a system designed to
 
 ## 📞 İletişim / Contact
 
-* **Geliştirici / Developer:** [Adınız Soyadınız]
-* **GitHub:** [GitHub Profil Linkiniz]
+* **Geliştirici / Developer:** [Batuhan Özler]
+* **GitHub:** [https://github.com/Fhewn]
 * **Proje Adı / Project Name:** Fabrika-Isci-Anket (Factory Employee Survey)
 
 *Bu tasarım, fabrika ortamındaki memnuniyet ölçüm ihtiyaçlarına özgü olarak hazırlanmıştır.*
